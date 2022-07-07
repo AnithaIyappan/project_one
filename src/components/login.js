@@ -1,7 +1,8 @@
-
 import React, { Component } from "react";
 import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import './login.css';
+import { history } from "../App";
+
 
 class Login extends Component {
     constructor() {
@@ -18,27 +19,62 @@ class Login extends Component {
         this.setState({
             email: event.target.value
         })
+        if(event.target.value){
+            this.setState({
+                emailError:""
+            })
+        }
     }
     changePassword = (event) => {
         this.setState({
             password: event.target.value
         })
+        if(event.target.value){
+            this.setState({
+                passwordError:""
+            })
+        }
+
+
     }
+
 
     validate = () => {
         const em_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const low = /(?=.*?[a-z])/i;
+        const upp = /(?=.*?[A-Z])/i;
+        const dig = /(?=.*?[0-9])/i;
+        const spl = /(?=.*?[#?!@$%^&*-])/i;
 
 
-        if(em_regex.test(this.state.email) === false && this.state.password.length !== 4){
+        if(em_regex.test(this.state.email) === false && !this.state.password){
             this.setState({
                 emailError:"enter valid email",
-                passwordError:"password must be 4 charactors"
+                passwordError:"enter valid password"
             })
         }
-        else if(this.state.password && !this.state.email){
+        else if(em_regex.test(this.state.email) === false && dig.test(this.state.password) === false){
             this.setState({
                 emailError:"enter valid email",
-                passwordError:""
+                passwordError:"atleast one digit"
+            })
+        }
+        else if(em_regex.test(this.state.email) === false && spl.test(this.state.password) === false){
+            this.setState({
+                emailError:"enter valid email",
+                passwordError:"atleast one special char"
+            })
+        }
+        else if(em_regex.test(this.state.email) === false && low.test(this.state.password) === false){
+            this.setState({
+                emailError:"enter valid email",
+                passwordError:"atleast one lowercase"
+            })
+        }
+        else if(em_regex.test(this.state.email) === false && this.state.password.length !== 5){
+            this.setState({
+                emailError:"enter valid email",
+                passwordError:"password must be 5 charactors"
             })
         }
         else if(em_regex.test(this.state.email) === false && this.state.password){
@@ -47,10 +83,35 @@ class Login extends Component {
                 passwordError:""
             })
         }
-        else if(em_regex.test(this.state.email) === true && this.state.password.length !== 4){
+        else if(em_regex.test(this.state.email) === true && !this.state.password){
             this.setState({
                 emailError:"",
-                passwordError:"password must be 4 charactors"
+                passwordError:"enter valid password"
+            })
+        }
+        else if(em_regex.test(this.state.email) === true && dig.test(this.state.password) === false){
+            this.setState({
+                emailError:"",
+                passwordError:"atleast one digit"
+            })
+        }
+        else if(em_regex.test(this.state.email) === true && spl.test(this.state.password) === false){
+            this.setState({
+                emailError:"",
+                passwordError:"atleast one special char"
+            })
+        }
+        else if(em_regex.test(this.state.email) === true && low.test(this.state.password) === false){
+            this.setState({
+                emailError:"",
+                passwordError:"atleast one lowercase"
+            })
+        }    
+        
+        else if(em_regex.test(this.state.email) === true && this.state.password.length !== 5){
+            this.setState({
+                emailError:"",
+                passwordError:"password must be 5 charactors"
             })
         }
         else{
@@ -60,7 +121,9 @@ class Login extends Component {
                 email:"",
                 password:""
             })
-            alert('login successfull');
+            alert('login successfull');  
+            history.push('/home');
+            document.location.reload() 
         }
     }
 
