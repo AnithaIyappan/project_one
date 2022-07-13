@@ -14,9 +14,9 @@ export class Navbar extends Component {
     return (
       <Container>
         <Row>
-          <Col lg={4} md={12} sm={12} xs={12}>
+          <Col lg={2} md={12} sm={12} xs={12}>
           </Col>
-          <Col lg={6} md={12} sm={12} xs={12} className='mt-5'>
+          <Col lg={10} md={12} sm={12} xs={12} className='mt-5'>
             <button>
               <NavLink to='/login' style={navLinkStyles} className='ms-5 me-5'>Login page</NavLink>
             </button>
@@ -26,8 +26,12 @@ export class Navbar extends Component {
             <button>
               <NavLink to='/person' style={navLinkStyles} className='ms-5 me-5'>PropTypes</NavLink>
             </button>
-          </Col>
-          <Col lg={2} md={12} sm={12} xs={12}>
+            <button>
+              <NavLink to='/click' style={navLinkStyles} className='ms-5 me-5'>ClickCounter</NavLink>
+            </button>
+            <button>
+              <NavLink to='/hover' style={navLinkStyles} className='ms-5 me-5'>HoverCounter</NavLink>
+            </button>
           </Col>
         </Row>
       </Container>

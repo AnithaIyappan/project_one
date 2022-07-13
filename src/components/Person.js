@@ -11,11 +11,11 @@ class Person extends Component {
                 <p>Age is {this.props.person.age} </p>
                 <p>Email is {this.props.person.email} </p>
                 <p>Children:</p>
-                <ul>
+                <p>
                     {this.props.person.children.map((child, key) =>
-                        <li key={key}>{child}</li>
+                        <p key={key}>{child}</p>
                     )}
-                </ul>
+                </p>
             </div>
         )
     }
