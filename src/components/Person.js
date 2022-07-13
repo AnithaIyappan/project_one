@@ -7,15 +7,13 @@ class Person extends Component {
         return (
             <div style={{"textAlign":"center"}}>
                 <h1>PropTypes</h1>
-                <p>Hello {this.props.person.name}</p>
+                <p>Name {this.props.person.name}</p>
                 <p>Age is {this.props.person.age} </p>
                 <p>Email is {this.props.person.email} </p>
                 <p>Children:</p>
-                <p>
                     {this.props.person.children.map((child, key) =>
                         <p key={key}>{child}</p>
                     )}
-                </p>
             </div>
         )
     }
@@ -35,3 +33,4 @@ Person.propTypes = {
 }
 
 export default Person;
+

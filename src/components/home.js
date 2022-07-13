@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-const redux = require("redux");
 
 class Home extends Component {
     render() {

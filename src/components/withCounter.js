@@ -1,5 +1,7 @@
 import { Component } from "react";
 
+
+// higher order component
 const withCounter = (OriginalComponent, incrementNumber) => {
     class NewComponent extends Component{
 
@@ -20,8 +22,11 @@ const withCounter = (OriginalComponent, incrementNumber) => {
 
         render(){
             const {count} = this.state;
+
             return(
+                <div  style={{"textAlign":"center"}} className="mt-5">
                 <OriginalComponent count={count} increment={this.increment} {...this.props}/>
+                </div>
             )
         }
     }
